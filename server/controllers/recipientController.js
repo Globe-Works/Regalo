@@ -37,10 +37,22 @@ recipientController.getRecipients = (req, res, next) => {
     .then((data) => (res.locals.recipients = data))
     .then(() => next());
 };
-// recipientController.postRecipient = (req, res, next) => {
-//   const { user_id, full_name, address, city, state, country, zip_code, notes } = req.body;
-//   const queryString = `INSERT INTO recipients (user_id, full_name, address, city, state, country, zip_code, notes) VALUES ($1, $2, $3, $4, $5, $6, $7, $8);`
-// }
+recipientController.postRecipient = (req, res, next) => {
+  const { user_id, full_name, address, city, state, country, zip_code, notes } = req.body;
+  const queryString = `INSERT INTO recipients (user_id, full_name, address, city, state, country, zip_code, notes) VALUES ($1, $2, $3, $4, $5, $6, $7, $8);`;
+  db.query(queryString, [
+    user_id,
+    full_name,
+    address || 'NULL',
+    city || 'NULL',
+    state || 'NULL',
+    country || 'NULL',
+    zip_code || 'NULL',
+    notes || 'NULL',
+  ]).then((data) => {
+    console.log(data);
+  });
+};
 /**
  * Optional other SQL QUERY for getRecipients
  * SELECT r._id, r.full_name,  r.address, r.city, r.notes, g._id AS gift_id, g.title, g.url, g.notes AS gift_notes, g.img_url
