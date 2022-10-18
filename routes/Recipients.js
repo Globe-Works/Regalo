@@ -1,16 +1,16 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-const GiftIdeas = () => {
+const Recipients = () => {
     return (
         <div id="body">
-        <h1>GiftIdeasComponent</h1>
+        <h1>Recipients Component</h1>
         <p>
             <span>
-            <Link to='/newgift' >New Gift</Link>
+            <Link to='/newrecipient' >Add Recipient</Link>
             </span>
         </p>
         </div>
     )
 };
 
-export default GiftIdeas;
+export default Recipients;

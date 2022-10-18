@@ -12,11 +12,21 @@ const Header = () => {
                 </h1>
             </div>
         </nav>
-        <span>
-            
-        </span>
+        <p>
+            <span>
             <Link to='/giftideas' >Gift Ideas</Link>
-            <Link to='/newgift' >New Gift</Link>
+            </span>
+        </p>
+        <p>
+            <span>
+            <Link to='/pairup' >Pair Em Up!</Link>
+            </span>
+        </p>
+        <p>
+            <span>
+            <Link to='/recipients' >Recipients</Link>
+            </span>
+        </p>
             <Outlet />
         </>
 

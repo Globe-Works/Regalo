@@ -16,6 +16,10 @@ import Selection from '../routes/Selection';
 import Header from '../routes/Header';
 import ErrorPage from './error-page';
 import NewGift from '../routes/NewGift';
+import PairUpScreen from '../routes/PairUpScreen';
+import Recipients from '../routes/Recipients';
+import AddRecipient from '../routes/AddRecipient';
+
 
 let router = createBrowserRouter(
   createRoutesFromElements(
@@ -23,20 +27,12 @@ let router = createBrowserRouter(
       <Route path="/" element={<Selection />} />
       <Route path="/giftideas" element={<GiftIdeas />} />
       <Route path="/newgift" element={<NewGift />} />
+      <Route path="/pairup" element={<PairUpScreen />} />
+      <Route path="/recipients" element={<Recipients />} />
+      <Route path="/newrecipient" element={<AddRecipient />} />
     </Route>
   )
 );
-// const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <SelectionsScreen />,
-//     errorElement: <ErrorPage />,
-//   },
-//   {
-//     path: "giftideas",
-//     element: <GiftIdeas />,
-//   },
-// ]);
 
 const App = () => {
   return (
