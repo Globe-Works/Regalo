@@ -1,5 +1,4 @@
 import React from 'react';
-// import { hot } from 'react-hot-loader/root';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 
