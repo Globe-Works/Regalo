@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import giftComponent from "./giftComponent";
+import GiftComponent from "./GiftComponent";
 const SelectionComponent = ({recipientId, gifts, fullName, notes }) => {
     const [giftList, setGiftList] = useState([])
     const handleDelete = async () => {
@@ -19,7 +19,8 @@ const SelectionComponent = ({recipientId, gifts, fullName, notes }) => {
     const addGift = () => {
         const tmpGiftArr = []
         gifts.forEach((gift,i) => {
-            tmpGiftArr.push(<giftComponent
+            tmpGiftArr.push(<GiftComponent
+            key={i}
             giftId={gift.giftId}
             giftName={gift.giftName}
             url={gift.url}

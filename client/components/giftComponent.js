@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-const giftComponent = ({giftId, giftName, url, notes }) => {
+const GiftComponent = ({giftId, giftName, url, notes }) => {
 
     const deleteGift = async () => {
         try {
@@ -37,4 +37,4 @@ const giftComponent = ({giftId, giftName, url, notes }) => {
     )
 };
 
-export default giftComponent;
+export default GiftComponent;

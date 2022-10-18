@@ -12,7 +12,7 @@ const MainPage = () => {
             const tmpArr = [];
             matchData.forEach((recipient, i) => {
                 // giftId, fullName, giftName, url, date, notes
-                const { id, fullName, gifts, notes} = recipient
+                const { id, fullName, gifts, notes} = recipient;
                 tmpArr.push(
                     <SelectionComponent
                     recipientId={id}
