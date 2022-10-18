@@ -5,6 +5,7 @@ import {
   createRoutesFromElements,
   Route,
   RouterProvider,
+  Outlet
 } from "react-router-dom";
 // import {
 //   GiftIdeas,
@@ -16,14 +17,29 @@ import ErrorPage from './error-page';
 let router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<SelectionsScreen />} errorElement={<ErrorPage />}>
-      <Route path="giftideas" element={<GiftIdeas />} />
+      <Route path="/giftideas" element={<GiftIdeas />} />
     </Route>
   )
 );
-
+// const router = createBrowserRouter([
+//   {
+//     path: "/",
+//     element: <SelectionsScreen />,
+//     errorElement: <ErrorPage />,
+//   },
+//   {
+//     path: "giftideas",
+//     element: <GiftIdeas />,
+//   },
+// ]);
 
 const App = () => {
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <RouterProvider router={router} />
+    </>
+
+  );
 }
 
 
