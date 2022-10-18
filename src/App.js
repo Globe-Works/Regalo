@@ -11,14 +11,14 @@ import {
 //   GiftIdeas,
 //   SelectionsScreen
 // } from '../routes';
-import GiftIdeas from '../routes/GiftIdeas';
-import Selection from '../routes/Selection';
-import Header from '../routes/Header';
+import GiftIdeas from './routes/GiftIdeas';
+import Selection from './routes/Selection';
+import Header from './routes/Header';
 import ErrorPage from './error-page';
-import NewGift from '../routes/NewGift';
-import PairUpScreen from '../routes/PairUpScreen';
-import Recipients from '../routes/Recipients';
-import AddRecipient from '../routes/AddRecipient';
+import NewGift from './routes/NewGift';
+import PairUpScreen from './routes/PairUpScreen';
+import Recipients from './routes/Recipients';
+import AddRecipient from './routes/AddRecipient';
 
 
 let router = createBrowserRouter(

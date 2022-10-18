@@ -24,6 +24,9 @@ export const editGift = () => {
         })
         .then(res => res.json())
         .then(data => console.log(data)) // later this will need to close the window
+        .catch((err) => {
+            console.log('Error occurred while trying to edit gift: ', err);
+        })
     }
 
     const handleRecipientInputs = (event) => {

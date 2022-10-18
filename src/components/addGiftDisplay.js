@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { dataItem } from './dataItem';
 // import { recipientSearchBar } from './recipientSearchBar';
 
-export const addGift = () => {
+export const addGiftDisplay = () => {
 
     const [giftName, setGiftName] = useState('');
     const [url, setUrl] = useState(null);
@@ -28,6 +28,9 @@ export const addGift = () => {
         })
         .then(res => res.json())
         .then(data => console.log(data)) // later this will need to close the window
+        .catch((err) => {
+            console.log('Error occurred while trying to add a gift: ', err);
+        })
     }
     const handleRecipientInputs = (event) => {
         handleFilter(event);

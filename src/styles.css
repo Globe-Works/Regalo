@@ -12,3 +12,14 @@
 nav {
     border: 1px solid black;
 }
+
+.dataResult {
+    display: flex;
+    flex-direction: column;
+}
+
+.dataItem {
+    display: flex;
+    justify-content: center;
+    background-color: azure;
+}
