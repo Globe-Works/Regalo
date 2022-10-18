@@ -11,3 +11,5 @@ const Recipient = (props) => {
         </span>
     </div>);
 }
+
+export default Recipient;
