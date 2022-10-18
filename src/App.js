@@ -1,18 +1,29 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+// import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
+// import {
+//   GiftIdeas,
+//   SelectionsScreen
+// } from '../routes';
+import GiftIdeas from '../routes/GiftIdeas';
+import SelectionsScreen from '../routes/SelectionsScreen';
+import ErrorPage from './error-page';
+let router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<SelectionsScreen />} errorElement={<ErrorPage />}>
+      <Route path="giftideas" element={<GiftIdeas />} />
+    </Route>
+  )
+);
 
 
 const App = () => {
-  return (
-    <BrowserRouter>
-      <>
-      <Routes>
-      <Route path="/" element={<h1 className="text-4xl text-white bg-black">Hello {name}</h1>}/>        
-      </Routes>
-      </>
-    </BrowserRouter>
-
-  );
+  return <RouterProvider router={router} />;
 }
 
 
