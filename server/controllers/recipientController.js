@@ -43,14 +43,15 @@ recipientController.postRecipient = (req, res, next) => {
   db.query(queryString, [
     user_id,
     full_name,
-    address || 'NULL',
-    city || 'NULL',
-    state || 'NULL',
-    country || 'NULL',
-    zip_code || 'NULL',
-    notes || 'NULL',
+    address || null,
+    city || null,
+    state || null,
+    country || null,
+    zip_code || null,
+    notes || null,
   ]).then((data) => {
     console.log(data);
+    next();
   });
 };
 /**
