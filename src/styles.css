@@ -3,3 +3,8 @@
 @tailwind components;
 
 @tailwind utilities;
+
+
+nav {
+    border: 1px solid black;
+}

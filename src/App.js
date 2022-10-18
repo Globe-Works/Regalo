@@ -1,16 +1,44 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+// import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+  Outlet
+} from "react-router-dom";
+// import {
+//   GiftIdeas,
+//   SelectionsScreen
+// } from '../routes';
+import GiftIdeas from '../routes/GiftIdeas';
+import Selection from '../routes/Selection';
+import Header from '../routes/Header';
+import ErrorPage from './error-page';
+import NewGift from '../routes/NewGift';
+import PairUpScreen from '../routes/PairUpScreen';
+import Recipients from '../routes/Recipients';
+import AddRecipient from '../routes/AddRecipient';
 
+
+let router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<Header />} errorElement={<ErrorPage />}>
+      <Route path="/" element={<Selection />} />
+      <Route path="/giftideas" element={<GiftIdeas />} />
+      <Route path="/newgift" element={<NewGift />} />
+      <Route path="/pairup" element={<PairUpScreen />} />
+      <Route path="/recipients" element={<Recipients />} />
+      <Route path="/newrecipient" element={<AddRecipient />} />
+    </Route>
+  )
+);
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <>
-      <Routes>
-      <Route path="/" element={<h1 className="text-4xl text-white bg-black">Hello {name}</h1>}/>        
-      </Routes>
-      </>
-    </BrowserRouter>
+    <>
+      <RouterProvider router={router} />
+    </>
 
   );
 }
