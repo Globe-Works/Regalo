@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-const GiftComponent = ({giftId, giftName, url, notes }) => {
+import React from "react";
+const GiftComponent = ({giftId, giftName, url, notes, setDeleted }) => {
 
     const deleteGift = async () => {
         try {
@@ -10,6 +10,7 @@ const GiftComponent = ({giftId, giftName, url, notes }) => {
                 },
             });
             console.log(`Deleted ${giftName}`)
+            setDeleted({ giftId })
         } catch (err) {
             console.log(`Error attempting to delete ${giftName}, Error: ${err}`)
         }

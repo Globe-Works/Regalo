@@ -1,16 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import GiftComponent from "./GiftComponent";
-const SelectionComponent = ({recipientId, gifts, fullName, notes }) => {
+const SelectionComponent = ({recipientId, gifts, fullName, notes, setDeleted, recentlyDeleted }) => {
     const [giftList, setGiftList] = useState([])
     const handleDelete = async () => {
         try {
-            await fetch(`/api/match/${giftId}`, {
+            await fetch(`/api/match/${recipientId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
                 },
             });
-            console.log(`Deleted ${giftName}`)
+            console.log(`Deleted ${recipientId}`)
         } catch (err) {
             console.log(`Error attempting to delete ${giftName}, Error: ${err}`)
         }
@@ -25,6 +25,7 @@ const SelectionComponent = ({recipientId, gifts, fullName, notes }) => {
             giftName={gift.giftName}
             url={gift.url}
             notes={gift.notes}
+            setDeleted={setDeleted}
             />)
         });
         setGiftList(tmpGiftArr)
@@ -36,18 +37,17 @@ const SelectionComponent = ({recipientId, gifts, fullName, notes }) => {
             console.log(err)
         }
 
-    },[giftList])
+    },[recentlyDeleted])
     return (
         <div className="selection-container">
             <div className="selection-component">
-                <div className="item-component">{giftsList}</div>
+                <div className="item-component">{giftList}</div>
                 <div className="name-component">
                     <p className="person-name">{fullName}</p>
-                    <p className="date">{date}</p>
                 </div>
             </div>
             <button className="deleteBtn" onClick={handleDelete}>
-                Delete
+                Delete Recipient
             </button>
         </div>
 
