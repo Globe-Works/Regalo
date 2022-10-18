@@ -5,6 +5,7 @@ export default Recipient = (props) => {
         <h2>{props.fullName}</h2>
         <p>Birthday: {props.birthday}</p>
         <p>Notes: {props.notes}</p>
+        <button class="delete-recipient-button">Delete</button>
     </div>);
 }
 

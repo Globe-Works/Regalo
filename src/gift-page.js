@@ -1,30 +1,31 @@
+import React from "react";
+import { useState } from "react";
+import { Gift } from './Gift';
+
 export default GiftPage = () => {
-    let giftsObj;
-    fetch('http://localhost:3000/api/gift',{
+    const [giftsArr, setGiftsArr] = useState([])
+    fetch('/api/gift',{
     })
     .then((response) => {
         response.json();
     })
     .then((data) => {
-        console.log(data);
-        giftsObj = data;
+        setGiftsArr(data);
     })
     .catch((err) => {
-        console.log('Error occurred in Gift Page fetch: ',err);
+        console.log('Error occurred in Gift Page fetch: ', err);
     })
-    const gifts = [];
-    for (key in giftsObj){
-        let { name, img, link, notes } = key
-        let props = { name, img, link, notes}
-        gifts.push(<Gift props={props} />);
-    }
 
     return (
         <div id='gift-page'>
             <h1>Gift Ideas</h1>
             <section>
-                {gifts}
+            {
+            giftsArr.map((gift) => {
+            return <Gift name={gift.name} link={gift.link} notes={gift.notes} />
+            })
+        }
             </section>
-        </div>
+        </div>    
     );
 }
