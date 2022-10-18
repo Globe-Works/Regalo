@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { dataItem } from './dataItem';
 // import { recipientSearchBar } from './recipientSearchBar';
 
 export const addGift = () => {
@@ -28,7 +29,6 @@ export const addGift = () => {
         .then(res => res.json())
         .then(data => console.log(data)) // later this will need to close the window
     }
-
     const handleRecipientInputs = (event) => {
         handleFilter(event);
         setRecipients([...recipients, event.target.value]);
@@ -36,7 +36,7 @@ export const addGift = () => {
 
     const handleFilter = (event) => {
         const entry = event.target.value;
-        const recipients = this.state.existingRecipients;
+        const recipients = existingRecipients;
         const newFilter = recipients.filter((value) => {
             return value.fullName.toLowerCase().includes(entry.toLowerCase());
         })
@@ -61,9 +61,9 @@ export const addGift = () => {
                 </label>
                 {filteredData.length!== 0 && (
                     <div className="dataResult">
-                    {filteredData.map(() => {
+                    {filteredData.map((item) => {
                         return (
-                            <dataItem onClick={replaceInput} />
+                            <dataItem onClick={replaceInput} text={item}/>
                         )
                     })}
                 </div>)}
