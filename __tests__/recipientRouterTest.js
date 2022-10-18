@@ -20,6 +20,7 @@ describe('Recipient Router ', () => {
     expect(JSON.parse(res.text)).toEqual({
       recipients: [
         {
+          userId: 1,
           recipientId: 1,
           fullName: 'Bob Wilson',
           address: '95 Elizabeth St',

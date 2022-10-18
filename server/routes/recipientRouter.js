@@ -1,4 +1,5 @@
 const express = require('express');
+const recipientController = require('../controllers/recipientController');
 const router = express.Router();
 
 //CREATE
@@ -7,19 +8,8 @@ router.post('/', (req, res) => {
 });
 
 //READ
-router.get('/', (req, res) => {
-  res.status(200).json({
-    recipients: [
-      {
-        recipientId: 1,
-        fullName: 'Bob Wilson',
-        address: '95 Elizabeth St',
-        city: 'New York',
-        notes: 'Likes Cake',
-        gifts: [{ giftId: 1, giftName: 'Teddy Bear', url: 'https://google.com', notes: '123' }],
-      },
-    ],
-  });
+router.get('/', recipientController.getRecipients, (req, res) => {
+  res.status(200).json(res.locals.recipients);
 });
 
 //UPDATE

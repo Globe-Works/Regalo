@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const giftController = require('../controllers/giftController');
 
 //CREATE
 router.post('/', (req, res) => {
@@ -7,13 +8,8 @@ router.post('/', (req, res) => {
 });
 
 //READ
-router.get('/', (req, res) => {
-  res.status(200).json({
-    gifts: [
-      { giftId: 1, giftName: 'Teddy Bear', url: 'https://google.com', notes: '123' },
-      { giftId: 2, giftName: 'Flowers', url: 'https://yahoo.com', notes: 'abc' },
-    ],
-  });
+router.get('/', giftController.getGifts, (req, res) => {
+  res.status(200).json(res.locals.gifts);
 });
 
 //UPDATE

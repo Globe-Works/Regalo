@@ -17,7 +17,12 @@ describe('Gift Router ', () => {
     const res = await request(app).get('/api/match');
     expect(res.header['content-type']).toBe('application/json; charset=utf-8');
     expect(res.statusCode).toBe(200);
-    expect(JSON.parse(res.text)).toEqual({ matches: [{ Bob: 'gift1' }, { Betty: 'gift2' }] });
+    expect(JSON.parse(res.text)).toEqual({
+      matches: [
+        { recipientId: 1, giftId: 2, userId: 1 },
+        { recipientId: 2, giftId: 1, userId: 1 },
+      ],
+    });
   });
 
   it('Responds to DELETE /api/match', async () => {
