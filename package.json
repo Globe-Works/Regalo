@@ -44,6 +44,8 @@
   },
   "dependencies": {
     "cors": "^2.8.5",
+    "passport": "^0.6.0",
+    "passport-google-oidc": "^0.1.0",
     "path": "^0.12.7",
     "pg": "^8.8.0",
     "react": "^18.2.0",

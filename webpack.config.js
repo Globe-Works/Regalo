@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const config = {
   entry: './src/index.js',
   devServer: {
+    historyApiFallback: true,
     proxy: {
       '/api': 'http://localhost:3000',
     },
