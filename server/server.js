@@ -9,9 +9,9 @@ if (process.env.NODE_ENV !== 'development') {
   app.use('/', express.static(path.resolve(__dirname, '../dist')));
 }
 
-app.get('/api/test', (req, res) => {
-  res.status(200).json({ status: 'success' });
-});
+// Gift CRUD Ops
+const giftRouter = require('./routes/giftRouter');
+app.use('/api/gift', giftRouter);
 
 // catch all handler for all unknown routes
 app.use((req, res) => {
