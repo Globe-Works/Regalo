@@ -3,17 +3,17 @@ const router = express.Router();
 
 //CREATE
 router.post('/', (req, res) => {
-  res.status(200).json({ message: 'We will add that gift' });
+  res.status(200).json({ message: 'We will add that recipient' });
 });
 
 //READ
 router.get('/', (req, res) => {
-  res.status(200).json({ gifts: ['gift1', 'gift1'] });
+  res.status(200).json({ recipients: ['Betty', 'Bob'] });
 });
 
 //UPDATE
 router.patch('/:id', (req, res) => {
-  res.status(200).json({ message: 'We will update that gift' });
+  res.status(200).json({ message: 'We will update that recipient' });
 });
 
 //DELETE

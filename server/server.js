@@ -13,6 +13,10 @@ if (process.env.NODE_ENV !== 'development') {
 const giftRouter = require('./routes/giftRouter');
 app.use('/api/gift', giftRouter);
 
+// Recipient CRUD Ops
+const recipientRouter = require('./routes/recipientRouter');
+app.use('/api/recipient', recipientRouter);
+
 // catch all handler for all unknown routes
 app.use((req, res) => {
   res.status(404).send('404');
