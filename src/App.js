@@ -12,7 +12,7 @@ import {
 //   SelectionsScreen
 // } from '../routes';
 import GiftIdeas from '../routes/GiftIdeas';
-import Selection from '../routes/Selection';
+import MainPage from '../routes/MainPage';
 import Header from '../routes/Header';
 import ErrorPage from './error-page';
 import NewGift from '../routes/NewGift';
@@ -24,7 +24,7 @@ import AddRecipient from '../routes/AddRecipient';
 let router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Header />} errorElement={<ErrorPage />}>
-      <Route path="/" element={<Selection />} />
+      <Route path="/" element={<MainPage />} />
       <Route path="/giftideas" element={<GiftIdeas />} />
       <Route path="/newgift" element={<NewGift />} />
       <Route path="/pairup" element={<PairUpScreen />} />
