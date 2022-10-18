@@ -56,29 +56,25 @@ ALTER TABLE gifts_for_recipients
 ADD CONSTRAINT "fk_gifts_for_recipients_recipient_id" FOREIGN KEY (recipient_id) REFERENCES recipients(_id);
 
 --Inserting Dummy Data for checking setup
-INSERT INTO users (_id, first_name, last_name, email, git_hub_oauth) VALUES (1, 'Matt', 'Garza', 'mattg614@gmail.com', 'klsde9cxxl');
+INSERT INTO users (first_name, last_name, email, git_hub_oauth) VALUES ('Matt', 'Garza', 'mattg614@gmail.com', 'klsde9cxxl');
+INSERT INTO users (first_name, last_name, email, git_hub_oauth) VALUES ('Dipen', 'Nagpal', 'dipennagpal@gmail.com', 'sadjklwer9');
+INSERT INTO users (first_name, last_name, email, git_hub_oauth) VALUES ('Craig', 'Boswell', 'ccboswell120@gmail.com', 'asfdsawexc');
+INSERT INTO users (first_name, last_name, email, git_hub_oauth) VALUES ('Lilah', 'August', 'lilahraeaugust@gmail.com', 'sadfasdf');
+INSERT INTO users (first_name, last_name, email, git_hub_oauth) VALUES ('Jeremy', 'Vogel', 'eremy.vogel44@gmail.com', 'asfasdfwexcv');
 
-INSERT INTO users (_id, first_name, last_name, email, git_hub_oauth) VALUES (2, 'Dipen', 'Nagpal', 'dipennagpal@gmail.com', 'sadjklwer9');
+INSERT INTO recipients (user_id, full_name) VALUES (1, 'Dipen Nagpal');
+INSERT INTO recipients (user_id, full_name) VALUES (1, 'Craig Boswell');
+INSERT INTO recipients (user_id, full_name) VALUES (1, 'Lilah August');
+INSERT INTO recipients (user_id, full_name) VALUES (1, 'Jeremy Vogel');
 
-INSERT INTO users (_id, first_name, last_name, email, git_hub_oauth) VALUES (3, 'Craig', 'Boswell', 'ccboswell120@gmail.com', 'asfdsawexc');
+INSERT INTO gifts (title, user_id) VALUES ('Xbox', 1);
+INSERT INTO gifts (title, user_id) VALUES ('PS5', 1);
+INSERT INTO gifts (title, user_id) VALUES ('Switch', 1);
+INSERT INTO gifts (title, user_id) VALUES ('Switch', 2);
 
-INSERT INTO users (_id, first_name, last_name, email, git_hub_oauth) VALUES (4, 'Lilah', 'August', 'lilahraeaugust@gmail.com', 'sadfasdf');
-
-INSERT INTO users (_id, first_name, last_name, email, git_hub_oauth) VALUES (5, 'Jeremy', 'Vogel', 'eremy.vogel44@gmail.com', 'asfasdfwexcv');
-
-INSERT INTO recipients (_id, user_id, full_name) VALUES (1, 1, 'Dipen Nagpal');
-INSERT INTO recipients (_id, user_id, full_name) VALUES (2, 1, 'Craig Boswell');
-INSERT INTO recipients (_id, user_id, full_name) VALUES (3, 1, 'Lilah August');
-INSERT INTO recipients (_id, user_id, full_name) VALUES (4, 1, 'Jeremy Vogel');
-
-INSERT INTO gifts (_id, title, user_id) VALUES (1, 'Xbox', 1);
-INSERT INTO gifts (_id, title, user_id) VALUES (2, 'PS5', 1);
-INSERT INTO gifts (_id, title, user_id) VALUES (3, 'Switch', 1);
-INSERT INTO gifts (_id, title, user_id) VALUES (4, 'Switch', 2);
-
-INSERT INTO gifts_for_recipients (_id, gift_id, recipient_id) Values (1,1,2);
-INSERT INTO gifts_for_recipients (_id, gift_id, recipient_id) Values (2,2,3);
-
+INSERT INTO gifts_for_recipients (gift_id, recipient_id) Values (1,2);
+INSERT INTO gifts_for_recipients (gift_id, recipient_id) Values (2,3);
+INSERT INTO gifts_for_recipients (gift_id, recipient_id) Values (2,2);
 -- GET RECIPIENTS BASED ON USER_id
 SELECT u.first_name AS "USER FIRST NAME", r.*
 FROM recipients r LEFT OUTER JOIN users u
