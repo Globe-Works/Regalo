@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const dataItem = (props) => {
+export const DataItem = (props) => {
     return (
         <div className="searchDataItem">
             {props.text}

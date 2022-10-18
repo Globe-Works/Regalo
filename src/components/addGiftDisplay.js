@@ -1,23 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import { dataItem } from './dataItem';
+import { DataItem } from './DataItem';
 // import { recipientSearchBar } from './recipientSearchBar';
 
-export const addGiftDisplay = () => {
+export const AddGiftDisplay = (props) => {
+
+    const { hideGift } = props;
 
     const [giftName, setGiftName] = useState('');
     const [url, setUrl] = useState(null);
     const [recipients, setRecipients] = useState([]);
     const [existingRecipients, setExistingRecipients] = useState([]);
-    const [filteredData, setFilteredData] = useState([]);
+    const [filteredData, setFilteredData] = useState([]); // array of objects
 
     useEffect(() => {
         fetch('/api/recipient')
-        .then(res => res.json)
+        .then(res => res.json())
         .then(data => setExistingRecipients(data))
-    })
+    }, [])
 
     const handleAddGift = () => {
-        fetch('api', { // need to specify endpoint
+        fetch('/api/gift', { // need to specify endpoint
           method: 'POST',
           body: JSON.stringify({
             giftName: giftName,
@@ -52,6 +54,7 @@ export const addGiftDisplay = () => {
 
     return (
         <div className='addGift'>
+            <button onClick={hideGift}> X </button>
             <form>
                 <label>gift:
                     <input type="text" onChange={(e) => setGiftName(e.target.value)}/>
@@ -66,7 +69,7 @@ export const addGiftDisplay = () => {
                     <div className="dataResult">
                     {filteredData.map((item) => {
                         return (
-                            <dataItem onClick={replaceInput} text={item}/>
+                            <DataItem key={item.fullName} onClick={replaceInput} text={item.fullName}/>
                         )
                     })}
                 </div>)}
@@ -76,39 +79,3 @@ export const addGiftDisplay = () => {
         </div>
     )
 }
-
-
-
-// (e) => setRecipients(recipients => [...recipients, e.target.value])
-
-
-
-// export const Form = () => {
-//     const [firstName, setFirstName] = useState("")
-//     const [lastName, setLastName] = useState("")
-//     const [age, setAge] = useState("")
-
-//     const onSubmitHandler = (event) => {
-//         event.preventDefault();
-//         responseBody.firstName = firstName
-//         responseBody.lastName = lastName
-//         responseBody.age = age
-//         console.log(JSON.stringify(responseBody))
-// 	//Form submission happens here
-//     }
-//     const inputChangeHandler = (setFunction, event) => {
-//         setFunction(event.target.value)
-//     }
-  
-//     return(
-//         <form onSubmit={onSubmitHandler}>
-//             <div><label htmlFor="first_name">First Name</label></div>
-//             <div><input id="first_name" onChange={(e)=>inputChangeHandler(setFirstName, e)} type="text"/></div>
-//             <div><label htmlFor="last_name">Last Name</label></div>
-//             <div><input id="last_name" onChange={(e)=>inputChangeHandler(setLastName, e)} type="text"/></div>
-//             <div><label htmlFor="age">Age</label></div>
-//             <div><input id="age" onChange={(e)=>inputChangeHandler(setAge, e)} type="number"/></div>
-//             <input type="submit"/>
-//          </form>
-//          )
-//          }

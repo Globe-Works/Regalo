@@ -1,18 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Gift } from '../components/Gift';
-import { addGiftDisplay } from '../components/addGiftDisplay';
+import { AddGiftDisplay } from '../components/AddGiftDisplay';
 
 const GiftsPage = () => {
 
     const [showAddGift, setShowAddGift] = useState(false);
-    const [giftsArr, setGiftsArr] = useState([{name: 'name1', link: 'link1', notes: 'notes1'}, {name: 'name2', link: 'link2', notes: 'notes2'}]);
+    const [giftsArr, setGiftsArr] = useState([]);
 
+    let count = 0;
+
+    useEffect(() => {
     fetch('/api/gift')
     .then((response) => response.json())
     .then((data) => setGiftsArr(data))
     .catch((err) => {
         console.log('Error occurred in Gift Page fetch: ', err);
     })
+    })
+
+    const displayAddGift = () => {
+        setShowAddGift(true);
+    }
+
+    const hideAddGift = () => {
+        setShowAddGift(false);
+    }
 
     return (
         <div id='gift-page'>
@@ -20,12 +32,12 @@ const GiftsPage = () => {
             <section className="gifts-holder">
                 {
                 giftsArr.map((gift) => {
-                return <Gift name={gift.name} link={gift.link} notes={gift.notes} />
+                return <Gift key={count++} name={gift.title} link={gift.url} notes={gift.notes} />
                 })
                 }
             </section>
-            <button onClick={() => {setShowAddGift(true)}}>add new gift idea</button>
-            {showAddGift === true && <addGiftDisplay />}
+            <button onClick={displayAddGift}>add new gift</button>
+            {showAddGift === true && <AddGiftDisplay hideGift={hideAddGift}/>}
         </div>    
     );
 }
