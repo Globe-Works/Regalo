@@ -17,11 +17,16 @@ describe('Gift Router ', () => {
     const res = await request(app).get('/api/gift');
     expect(res.header['content-type']).toBe('application/json; charset=utf-8');
     expect(res.statusCode).toBe(200);
-    expect(JSON.parse(res.text)).toEqual({ gifts: ['gift1', 'gift1'] });
+    expect(JSON.parse(res.text)).toEqual({
+      gifts: [
+        { giftId: 1, giftName: 'Teddy Bear', url: 'https://google.com', notes: '123' },
+        { giftId: 2, giftName: 'Flowers', url: 'https://yahoo.com', notes: 'abc' },
+      ],
+    });
   });
 
   it('Responds to PATCH /api/gift', async () => {
-    const res = await request(app).patch('/api/gift/123');
+    const res = await request(app).put('/api/gift/123');
     expect(res.header['content-type']).toBe('application/json; charset=utf-8');
     expect(res.statusCode).toBe(200);
     expect(JSON.parse(res.text)).toEqual({ message: 'We will update that gift' });

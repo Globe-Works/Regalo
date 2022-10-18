@@ -17,11 +17,22 @@ describe('Recipient Router ', () => {
     const res = await request(app).get('/api/recipient');
     expect(res.header['content-type']).toBe('application/json; charset=utf-8');
     expect(res.statusCode).toBe(200);
-    expect(JSON.parse(res.text)).toEqual({ recipients: ['Betty', 'Bob'] });
+    expect(JSON.parse(res.text)).toEqual({
+      recipients: [
+        {
+          recipientId: 1,
+          fullName: 'Bob Wilson',
+          address: '95 Elizabeth St',
+          city: 'New York',
+          notes: 'Likes Cake',
+          gifts: [{ giftId: 1, giftName: 'Teddy Bear', url: 'https://google.com', notes: '123' }],
+        },
+      ],
+    });
   });
 
   it('Responds to PATCH /api/recipient', async () => {
-    const res = await request(app).patch('/api/recipient/123');
+    const res = await request(app).put('/api/recipient/123');
     expect(res.header['content-type']).toBe('application/json; charset=utf-8');
     expect(res.statusCode).toBe(200);
     expect(JSON.parse(res.text)).toEqual({ message: 'We will update that recipient' });

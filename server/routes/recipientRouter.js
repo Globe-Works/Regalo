@@ -8,11 +8,22 @@ router.post('/', (req, res) => {
 
 //READ
 router.get('/', (req, res) => {
-  res.status(200).json({ recipients: ['Betty', 'Bob'] });
+  res.status(200).json({
+    recipients: [
+      {
+        recipientId: 1,
+        fullName: 'Bob Wilson',
+        address: '95 Elizabeth St',
+        city: 'New York',
+        notes: 'Likes Cake',
+        gifts: [{ giftId: 1, giftName: 'Teddy Bear', url: 'https://google.com', notes: '123' }],
+      },
+    ],
+  });
 });
 
 //UPDATE
-router.patch('/:id', (req, res) => {
+router.put('/:id', (req, res) => {
   res.status(200).json({ message: 'We will update that recipient' });
 });
 

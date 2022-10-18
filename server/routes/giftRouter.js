@@ -8,11 +8,16 @@ router.post('/', (req, res) => {
 
 //READ
 router.get('/', (req, res) => {
-  res.status(200).json({ gifts: ['gift1', 'gift1'] });
+  res.status(200).json({
+    gifts: [
+      { giftId: 1, giftName: 'Teddy Bear', url: 'https://google.com', notes: '123' },
+      { giftId: 2, giftName: 'Flowers', url: 'https://yahoo.com', notes: 'abc' },
+    ],
+  });
 });
 
 //UPDATE
-router.patch('/:id', (req, res) => {
+router.put('/:id', (req, res) => {
   res.status(200).json({ message: 'We will update that gift' });
 });
 
