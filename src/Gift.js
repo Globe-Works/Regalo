@@ -1,17 +1,10 @@
-import React from "react";
-
-const Gift = props => {
-
+export default Gift = props => {
+    //Individual Gift Items
     return(
-        <div>
-            <img src={props.img}></img>
-            <span>
-                <h2>{props.name}</h2>
-                <p>Link: <a href={props.link}>{props.link}</a></p>
-                <p>Notes: {props.notes}</p>
-            </span>
+        <div class="gift">
+            <h2>{props.name}</h2>
+            <p>Link: <a href={props.link}>{props.link}</a></p>
+            <p>Notes: {props.notes}</p>
         </div>
     )
 }
-
-export default Gift;
