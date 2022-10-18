@@ -18,6 +18,7 @@ CREATE TABLE recipients (
     state varchar,
     country varchar,
     zip_code varchar,
+    notes varchar,
     CONSTRAINT pk_recipients PRIMARY KEY(
       _id
     )
@@ -38,6 +39,8 @@ CREATE TABLE gifts (
     description varchar,
     url varchar,
     user_id int NOT NULL,
+    notes varchar,
+    img_url varchar,
     CONSTRAINT pk_gifts PRIMARY KEY (
         _id
      )
