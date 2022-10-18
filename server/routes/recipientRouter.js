@@ -3,7 +3,7 @@ const recipientController = require('../controllers/recipientController');
 const router = express.Router();
 
 //CREATE
-router.post('/', (req, res) => {
+router.post('/', recipientController.postRecipient, (req, res) => {
   res.status(200).json({ message: 'We will add that recipient' });
 });
 
