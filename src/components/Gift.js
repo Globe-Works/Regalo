@@ -8,14 +8,17 @@ export const Gift = props => {
         try {
             await fetch(`/api/gift/${giftId}`, {
                 method: 'DELETE',
+                credentials: 'include',
                 headers: {
+                    'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                },
+                    'Access-Control-Allow-Credentials': true,
+                }
             });
             console.log(`Deleted ${title}`)
-        } catch (err) {
-            console.log(`Error attempting to delete ${title}, Error: ${err}`)
-        }
+            } catch (err) {
+                console.log(`Error attempting to delete ${title}, Error: ${err}`)
+            }
     }
     //Individual Gift Items
     return(

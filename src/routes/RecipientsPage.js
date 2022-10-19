@@ -9,7 +9,15 @@ const RecipientsPage = () => {
 
     let count = 0;
     useEffect(() => {
-        fetch('/api/recipient')
+        fetch('/api/recipient', {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Credentials': true,
+            }
+        })
         .then((response) => response.json())
         .then((data) => setRecipientsArr(data))
         .catch((err) => {
