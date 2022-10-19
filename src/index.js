@@ -9,7 +9,9 @@ var mountNode = document.getElementById('app');
 // ReactDOM.render(<App name="Jane" />, mountNode);
 const root = ReactDOM.createRoot(mountNode);
 root.render(
-  <Context>
-    <App />
-  </Context>,
+  <React.StrictMode>
+    <Context>
+      <App />
+    </Context>
+  </React.StrictMode>,
 );
