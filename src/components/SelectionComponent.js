@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import GiftComponent from './GiftComponent';
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+
 const SelectionComponent = ({
   recipientId,
   gifts,
@@ -8,9 +14,12 @@ const SelectionComponent = ({
   setDeleted,
   recentlyDeleted,
   setRecipientDeleted,
-  giftsData
+  giftsData,
+  setGiftAdded,
+  giftAdded,
 }) => {
   const [giftList, setGiftList] = useState([]);
+
   const handleDelete = async () => {
     try {
       await fetch(`/api/recipient/${recipientId}`, {
@@ -25,9 +34,22 @@ const SelectionComponent = ({
       console.log(`Error attempting to delete ${giftName}, Error: ${err}`);
     }
   };
-    const handlePair = () => {
-      
-  }
+
+  const handlePair = async (e) => {
+      console.log(e.target.value);
+      await fetch(`/api/match/`, {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+              giftId: e.target.value._id,
+              recipientId: recipientId
+          })
+      });
+      console.log('handlePair',e.target.value)
+      setGiftAdded({gift: e.target.value})
+  };
   const loadGift = () => {
     const tmpGiftArr = [];
     gifts.forEach((gift, i) => {
@@ -50,15 +72,34 @@ const SelectionComponent = ({
     } catch (err) {
       console.log(err);
     }
-  }, [recentlyDeleted]);
+  }, [recentlyDeleted,giftAdded]);
+
+    const MenuItems = [];
+    giftsData.forEach((gift) => {
+        MenuItems.push(<MenuItem value={gift}>{`${gift.title}` }</MenuItem>)
+    });
+    
   return (
     <div className="selection-container">
       <p className="person-name">{fullName}</p>
       <div className="name-component">
         <div className="item-component">{giftList}</div>
       </div>
-          <button className="selectionBtn" onClick={handlePair}>Pair New Gift</button>
-      <button className="deleteBtn" onClick={handleDelete}>
+      <Box sx={{ minWidth: 120 }}>
+        <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">Pair New Gift</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={giftsData}
+            label="PairGift"
+            onChange={handlePair}
+          >
+            {MenuItems}
+          </Select>
+        </FormControl>
+      </Box>
+      <button onClick={handleDelete}>
         Delete Recipient
       </button>
     </div>

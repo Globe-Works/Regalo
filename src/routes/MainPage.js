@@ -4,7 +4,7 @@ const MainPage = () => {
   const [matchList, setMatchList] = useState([]);
   const [recentlyDeleted, setDeleted] = useState({ giftId: 0 });
   const [recipientDeleted, setRecipientDeleted] = useState({ recipientId: 0 });
-  const [giftsList, setGiftList] = useState([]);
+  const [giftAdded, setGiftAdded] = useState({gift: null});
 
   const fetchMatches = async () => {
     try {
@@ -27,8 +27,10 @@ const MainPage = () => {
             notes={notes}
             setDeleted={setDeleted}
             recentlyDeleted={recentlyDeleted}
-                setRecipientDeleted={setRecipientDeleted}
-                giftsData = {giftsData}
+            setRecipientDeleted={setRecipientDeleted}
+            giftsData = {giftsData}
+            setGiftAdded={setGiftAdded}
+            giftAdded={giftAdded}
           />,
         );
         setMatchList(tmpArr);
@@ -44,7 +46,7 @@ const MainPage = () => {
     } catch (err) {
       console.log(`Error attempting to fetch match list ${err}`);
     }
-  }, [recentlyDeleted, recipientDeleted]);
+  }, [recentlyDeleted, recipientDeleted, giftAdded]);
 
   return (
     <div className="main-container">
