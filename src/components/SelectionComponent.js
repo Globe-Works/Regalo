@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import GiftComponent from "./GiftComponent";
-const SelectionComponent = ({recipientId, gifts, fullName, notes, setDeleted, recentlyDeleted }) => {
+const SelectionComponent = ({recipientId, gifts, fullName, notes, setDeleted, recentlyDeleted, setRecipientDeleted }) => {
     const [giftList, setGiftList] = useState([])
     const handleDelete = async () => {
         try {
-            await fetch(`/api/match/${recipientId}`, {
+            await fetch(`/api/recipient/${recipientId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
                 },
             });
             console.log(`Deleted ${recipientId}`)
+            setRecipientDeleted({ recipientId })
         } catch (err) {
             console.log(`Error attempting to delete ${giftName}, Error: ${err}`)
         }
@@ -19,8 +20,9 @@ const SelectionComponent = ({recipientId, gifts, fullName, notes, setDeleted, re
     const addGift = () => {
         const tmpGiftArr = []
         gifts.forEach((gift,i) => {
+            console.log('GiftId',gift.giftId, recipientId)
             tmpGiftArr.push(<GiftComponent
-            key={i}
+            key={`${gift.giftId}${recipientId}`}
             giftId={gift.giftId}
             giftName={gift.giftName}
             url={gift.url}

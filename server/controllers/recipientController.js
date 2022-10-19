@@ -25,7 +25,7 @@ recipientController.getRecipients = (req, res, next) => {
         if (curr.title) {
           elToUpdate.gifts.push({
             giftName: curr.title,
-            giftId: curr.giftId,
+            giftId: curr.giftid,
             url: curr.url,
             img_url: curr.img_url,
             description: curr.description,
