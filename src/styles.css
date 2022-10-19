@@ -4,7 +4,66 @@
 
 @tailwind utilities;
 
+app {
+    font-family: Verdana, Tahoma, sans-serif;
+}
+
+.addGift {
+    display: flex;
+    flex-direction: column;
+}
 
 nav {
     border: 1px solid black;
+}
+
+.main-container {
+    display: flex;
+    /* border: 1px solid black; */
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.selection-container {
+    display: flex;
+    border: 1px solid black;
+    border-radius: 10px;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.item-component {
+    display: flex;
+    /* border: 1px solid red; */
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+}
+
+.dataResult {
+    display: flex;
+    flex-direction: column;
+}
+
+.dataItem {
+    display: flex;
+    justify-content: center;
+    background-color: azure;
+}
+
+.addItem {
+    display: flex;
+    justify-content: center;
+    border: 1px solid black;
+    flex-direction: column;
+    width: 35em;
+    height: 20em;
+    margin: auto;
+    align-self: center;
+}
+
+.alertMessage {
+    color: red;
 }
