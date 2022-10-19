@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import SelectionComponent from '../client/components/SelectionComponent'
+import SelectionComponent from '../../client/components/SelectionComponent'
 const MainPage = () => {
 
     const [matchList, setMatchList] = useState([]);

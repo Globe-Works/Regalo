@@ -56,7 +56,7 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { Link } from 'react-router-dom';
 import { Outlet } from 'react-router-dom'
-const pages = [{name:'Home', route: '/'}, {name:'Gift Ideas', route: '/giftideas'}, {name:'Pair Em Up!', route: '/pairup'}, {name:'Recipients', route: '/recipients'}];
+const pages = [{name:'Home', route: '/'}, {name:'Gift Ideas', route: '/giftspage'}, {name:'Pair Em Up!', route: '/pairup'}, {name:'Recipients', route: '/recipients'}];
 const settings = ['Logout'];
 
 function Header() {
