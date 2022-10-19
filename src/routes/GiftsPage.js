@@ -16,7 +16,7 @@ const GiftsPage = () => {
     .catch((err) => {
         console.log('Error occurred in Gift Page fetch: ', err);
     })
-    })
+    },[])
 
     const displayAddGift = () => {
         setShowAddGift(true);

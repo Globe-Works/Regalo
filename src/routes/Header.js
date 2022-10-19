@@ -14,6 +14,11 @@ const Header = () => {
         </nav>
         <p>
             <span>
+            <Link to='/' >Home</Link>
+            </span>
+        </p>
+        <p>
+            <span>
             <Link to='/giftspage' >Gifts</Link>
             </span>
         </p>
