@@ -13,7 +13,7 @@ router.get('/', giftController.getGifts, (req, res) => {
 });
 
 //UPDATE
-router.put('/:id', (req, res) => {
+router.put('/', (req, res) => {
   res.status(200).json({ message: 'We will update that gift' });
 });
 

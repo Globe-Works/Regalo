@@ -4,7 +4,7 @@ const recipientController = {};
 
 recipientController.getRecipients = (req, res, next) => {
   const queryString = `SELECT r.*, g.title, g._id as giftId, g.url, g.img_url, g.notes, g.description FROM recipients r LEFT JOIN gifts_for_recipients gj ON r._id=gj.recipient_id AND user_id=$1 LEFT JOIN gifts g ON g._id=gj.gift_id`;
-  const userId = 1; //TODO: Pull userID from cookie
+  const userId = req.params.id; //TODO: Pull userID from cookie
   db.query(queryString, [userId])
     .then((data) =>
       data.rows.reduce((acc, curr) => {
@@ -51,7 +51,36 @@ recipientController.postRecipient = (req, res, next) => {
     notes || null,
   ]).then((data) => {
     console.log(data);
-    next();
+    return next();
+  });
+};
+recipientController.updateRecipient = async (req, res, next) => {
+  const { _id, user_id, full_name, address, city, state, country, zip_code, notes } = req.body;
+  const queryString = `UPDATE recipients
+                      SET user_id = $2, full_name = $3, address = $4, city = $5, state = $6, country = $7, zip_code = $8, notes = $9
+                      WHERE _id = $1;`;
+
+  db.query(queryString, [
+    _id,
+    user_id,
+    full_name,
+    address,
+    city,
+    state,
+    country,
+    zip_code,
+    notes,
+  ]).then((data) => {
+    console.log(data);
+    return next();
+  });
+};
+
+recipientController.deleteRecipient = (req, res, next) => {
+  const queryString = `DELETE FROM recipients WHERE _id = $1`;
+  db.query(queryString, [req.params.id]).then((data) => {
+    console.log(data);
+    return next();
   });
 };
 /**
