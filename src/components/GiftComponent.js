@@ -41,6 +41,7 @@ const GiftComponent = ({ giftId, giftName, url, notes, setDeleted, recipientId }
         </div>
 
     )
+  }
 };
 
 export default GiftComponent;
