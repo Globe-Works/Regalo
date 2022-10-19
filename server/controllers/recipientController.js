@@ -77,10 +77,14 @@ recipientController.updateRecipient = async (req, res, next) => {
 };
 
 recipientController.deleteRecipient = (req, res, next) => {
-  const queryString = `DELETE FROM recipients WHERE _id = $1`;
-  db.query(queryString, [req.params.id]).then((data) => {
-    console.log(data);
-    return next();
+  //pgSQL doesn't allow multi line queries when using parameters so chained the queries
+  const queryString1 = `DELETE FROM gifts_for_recipients WHERE recipient_id = $1`;
+  const queryString2 = `DELETE FROM recipients WHERE _id = $1`;
+  db.query(queryString1, [req.params.id]).then((data) => {
+    db.query(queryString2, [req.params.id]).then((data) => {
+      console.log(data);
+      return next();
+    });
   });
 };
 /**
