@@ -1,16 +1,16 @@
-import React from 'react';
-// import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import React, { useContext } from 'react';
+
 import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
   RouterProvider,
-  Outlet
-} from "react-router-dom";
-// import {
-//   GiftIdeas,
-//   SelectionsScreen
-// } from '../routes';
+  Navigate,
+} from 'react-router-dom';
+
+import { myContext } from './Context';
+import LoginPage from './Pages/LoginPage';
+
 import GiftsPage from './routes/GiftsPage';
 import MainPage from './routes/MainPage';
 import Header from './routes/Header';
@@ -20,28 +20,26 @@ import PairUpScreen from './routes/PairUpScreen';
 import RecipientsPage from './routes/RecipientsPage';
 import AddRecipient from './routes/AddRecipient';
 
-
-let router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path="/" element={<Header />} errorElement={<ErrorPage />}>
-      <Route path="/" element={<MainPage />} />
-      <Route path="/giftspage" element={<GiftsPage />} />
-      <Route path="/newgift" element={<NewGift />} />
-      <Route path="/pairup" element={<PairUpScreen />} />
-      <Route path="/recipients" element={<RecipientsPage />} />
-      <Route path="/newrecipient" element={<AddRecipient />} />
-    </Route>
-  )
-);
-
 const App = () => {
+  const user = useContext(myContext);
+  let router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path="/" element={<Header />} errorElement={<ErrorPage />}>
+        <Route path="/" element={user ? <MainPage /> : <LoginPage />} />
+        <Route path="/login" element={user ? <Navigate to="/" /> : <LoginPage />} />
+        <Route path="/giftspage" element={<GiftsPage />} />
+        <Route path="/newgift" element={<NewGift />} />
+        <Route path="/pairup" element={<PairUpScreen />} />
+        <Route path="/recipients" element={<RecipientsPage />} />
+        <Route path="/newrecipient" element={<AddRecipient />} />
+      </Route>,
+    ),
+  );
   return (
     <>
       <RouterProvider router={router}/>
     </>
-
   );
-}
+};
 
-
-export default App
+export default App;

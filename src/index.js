@@ -1,11 +1,17 @@
 import React from 'react';
 import * as ReactDOM from 'react-dom/client';
 import App from './App';
+import Context from './Context';
+
 import './styles.css';
 
 var mountNode = document.getElementById('app');
-ReactDOM.createRoot(document.getElementById("app")).render(
-    <React.StrictMode>
+// ReactDOM.render(<App name="Jane" />, mountNode);
+const root = ReactDOM.createRoot(mountNode);
+root.render(
+  <React.StrictMode>
+    <Context>
       <App />
-    </React.StrictMode>
-  );
+    </Context>
+  </React.StrictMode>,
+);

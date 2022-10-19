@@ -1,10 +1,9 @@
 --SQL Code to create tables
 CREATE TABLE users (
     _id  SERIAL  NOT NULL,
-    first_name varchar,
-    last_name varchar,
+    display_name varchar NOT NULL,
     email varchar   NOT NULL,
-    git_hub_oauth varchar   NOT NULL,
+    google_id varchar   DEFAULT NULL,
     CONSTRAINT pk_users PRIMARY KEY (
         _id
      )
@@ -56,11 +55,11 @@ ALTER TABLE gifts_for_recipients
 ADD CONSTRAINT "fk_gifts_for_recipients_recipient_id" FOREIGN KEY (recipient_id) REFERENCES recipients(_id);
 
 --Inserting Dummy Data for checking setup
-INSERT INTO users (first_name, last_name, email, git_hub_oauth) VALUES ('Matt', 'Garza', 'mattg614@gmail.com', 'klsde9cxxl');
-INSERT INTO users (first_name, last_name, email, git_hub_oauth) VALUES ('Dipen', 'Nagpal', 'dipennagpal@gmail.com', 'sadjklwer9');
-INSERT INTO users (first_name, last_name, email, git_hub_oauth) VALUES ('Craig', 'Boswell', 'ccboswell120@gmail.com', 'asfdsawexc');
-INSERT INTO users (first_name, last_name, email, git_hub_oauth) VALUES ('Lilah', 'August', 'lilahraeaugust@gmail.com', 'sadfasdf');
-INSERT INTO users (first_name, last_name, email, git_hub_oauth) VALUES ('Jeremy', 'Vogel', 'eremy.vogel44@gmail.com', 'asfasdfwexcv');
+INSERT INTO users (display_name, email ) VALUES ('Matt Garza', 'mattg614@gmail.com');
+INSERT INTO users (display_name, email) VALUES ('Dipen Nagpal', 'dipennagpal@gmail.com');
+INSERT INTO users (display_name, email) VALUES ('Craig Boswell', 'ccboswell120@gmail.com');
+INSERT INTO users (display_name, email) VALUES ('Lilah August', 'lilahraeaugust@gmail.com');
+INSERT INTO users (display_name, email) VALUES ('Jeremy Vogel', 'eremy.vogel44@gmail.com');
 
 INSERT INTO recipients (user_id, full_name) VALUES (1, 'Dipen Nagpal');
 INSERT INTO recipients (user_id, full_name) VALUES (1, 'Craig Boswell');

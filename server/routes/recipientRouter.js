@@ -13,12 +13,12 @@ router.get('/', recipientController.getRecipients, (req, res) => {
 });
 
 //UPDATE
-router.put('/:id', (req, res) => {
+router.put('/', recipientController.updateRecipient, (req, res) => {
   res.status(200).json({ message: 'We will update that recipient' });
 });
 
 //DELETE
-router.delete('/:id', (req, res) => {
+router.delete('/:id', recipientController.deleteRecipient, (req, res) => {
   res.status(204).send();
 });
 
