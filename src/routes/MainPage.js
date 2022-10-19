@@ -8,7 +8,16 @@ const MainPage = () => {
 
   const fetchMatches = async () => {
     try {
-      const response = await fetch('/api/recipient');
+      const response = 
+            await fetch('/api/recipient', {
+                method: 'GET',
+                credentials: 'include',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Credentials': true,
+                    }
+                });
       const matchData = await response.json();
 
       const allGifts = await fetch('/api/gift');

@@ -53,7 +53,7 @@ nav {
     background-color: azure;
 }
 
-.addGift {
+.addItem {
     display: flex;
     justify-content: center;
     border: 1px solid black;
@@ -62,4 +62,8 @@ nav {
     height: 20em;
     margin: auto;
     align-self: center;
+}
+
+.alertMessage {
+    color: red;
 }

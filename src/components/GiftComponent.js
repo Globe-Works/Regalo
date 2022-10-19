@@ -5,7 +5,9 @@ const GiftComponent = ({ giftId, giftName, url, notes, setDeleted, recipientId }
       await fetch(`/api/match/`, {
         method: 'DELETE',
         headers: {
+          Accept: 'application/json',
           'Content-Type': 'application/json',
+          'Access-Control-Allow-Credentials': true,
         },
         body: JSON.stringify({
           giftId,
