@@ -29,7 +29,6 @@ export const AddGiftDisplay = (props) => {
             title: giftName,
             url: url,
             recipientId: recipientId,
-            user_id: 1 // TEMPORARY DUMMY DATA
           }),
           headers: { 'Content-Type': 'application/json' }
         })

@@ -51,6 +51,10 @@ nav {
     display: flex;
     justify-content: center;
     background-color: azure;
+    border-radius: 0;
+    border: 1px solid black;
+    width: 10%;
+    height: auto;
 }
 
 .addItem {
@@ -62,6 +66,7 @@ nav {
     height: 20em;
     margin: auto;
     align-self: center;
+    background-color: aliceblue;
 }
 
 .alertMessage {

@@ -16,7 +16,6 @@ export const AddRecipientDisplay = (props) => {
             method: 'POST',
             body: JSON.stringify({
                 full_name: name,
-                user_id: 1,  // TEMPORARY DUMMY DATA
                 address: address,
                 city: city,
                 zip: zip,
