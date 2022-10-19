@@ -4,7 +4,37 @@
 
 @tailwind utilities;
 
+app {
+    font-family: Verdana, Tahoma, sans-serif;
+}
+
+.addGift {
+    display: flex;
+    flex-direction: column;
+}
 
 nav {
     border: 1px solid black;
+}
+
+.dataResult {
+    display: flex;
+    flex-direction: column;
+}
+
+.dataItem {
+    display: flex;
+    justify-content: center;
+    background-color: azure;
+}
+
+.addGift {
+    display: flex;
+    justify-content: center;
+    border: 1px solid black;
+    flex-direction: column;
+    width: 35em;
+    height: 20em;
+    margin: auto;
+    align-self: center;
 }

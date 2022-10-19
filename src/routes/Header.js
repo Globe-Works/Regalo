@@ -19,7 +19,7 @@ const Header = () => {
         </p>
         <p>
             <span>
-            <Link to='/giftideas' >Gift Ideas</Link>
+            <Link to='/giftspage' >Gifts</Link>
             </span>
         </p>
         <p>
