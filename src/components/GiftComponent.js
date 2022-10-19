@@ -5,15 +5,18 @@ const GiftComponent = ({giftId, giftName, url, notes, setDeleted }) => {
         try {
             await fetch(`/api/gift/${giftId}`, {
                 method: 'DELETE',
+                credentials: 'include',
                 headers: {
+                    'Accept': 'application/json',
                     'Content-Type': 'application/json',
+                    'Access-Control-Allow-Credentials': true,
                 },
             });
             console.log(`Deleted ${giftName}`)
             setDeleted({ giftId })
-        } catch (err) {
-            console.log(`Error attempting to delete ${giftName}, Error: ${err}`)
-        }
+            } catch (err) {
+                console.log(`Error attempting to delete ${giftName}, Error: ${err}`)
+            }
     }
 
     const handleDelete= async () => {
@@ -30,7 +33,7 @@ const GiftComponent = ({giftId, giftName, url, notes, setDeleted }) => {
             </div>
             <p className="gift-name">{giftName}</p>
             <p className="gift-notes">{notes}</p>
-            <button className="deleteGift" onClick={handleDelete}>
+            <button className="deleteItemButton" onClick={handleDelete}>
                 Delete Gift
             </button>
         </div>

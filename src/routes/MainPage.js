@@ -41,9 +41,13 @@ const MainPage = () => {
     }, [recentlyDeleted])
 
     return (
-        <div className="main-container">
-            <h4>Gift Matches</h4>
-            <div className="selections-list">{matchList}</div>
+        <div className="page">
+             <div className="main-container">
+             <div id='pageHeader'>
+                <h1>Matches</h1>
+            </div>
+                <div className="selections-list">{matchList}</div>
+            </div>
         </div>
     )
 };

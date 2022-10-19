@@ -14,7 +14,15 @@ export const AddGiftDisplay = (props) => {
     const [alertMessage, setAlertMessage] = useState('')
 
     useEffect(() => {
-        fetch('/api/recipient')
+        fetch('/api/recipient', {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Credentials': true,
+            }
+        })
         .then(res => res.json())
         .then(data => setExistingRecipients(data))
     }, [])
@@ -62,24 +70,23 @@ export const AddGiftDisplay = (props) => {
         left: 0,
         right: 0,
         bottom: 0,
-        backgroundColor: 'rgba(0, 0, 0, 0.9)',
+        backgroundColor: 'rgba(0, 0, 0, 0.2)',
         zIndex: 1000
     }
 
     return (
         <div style={modalOverlay}>
-            <div className='addGift'>
-            <button onClick={hideGift}> X </button>
-            <form>
-                <label>gift:
+            <div className='addItem'>
+            <div className="newItemForm">
+                <div className="topRow">
+                    <p>gift:</p>
+                    <button className="hideModal" onClick={hideGift}> X </button>
+                </div>
                     <input type="text" onChange={(e) => setGiftName(e.target.value)}/>
-                </label>
-                <label>link to gift (optional):
+                <p>link to gift (optional):</p>
                     <input type="text" onChange={(e) => setUrl(e.target.value)}/>
-                </label>
-                <label>recipient (optional):
-                    <input type="text" onChange={handleFilter}/>
-                </label>
+                <p>recipient (optional):</p>
+                <input type="text" onChange={handleFilter}/>
                 {filteredData.length!== 0 && (
                     <div className="dataResult">
                     {filteredData.map((item) => {
@@ -89,8 +96,8 @@ export const AddGiftDisplay = (props) => {
                     })}
                 </div>)}
                 <div className="alertMessage">{alertMessage}</div>
-                <button onClick={handleAddGift}>add gift</button>
-            </form>
+                <button className="addItemButton" onClick={handleAddGift}>add gift</button>
+            </div>
         </div>
         </div>
     )
