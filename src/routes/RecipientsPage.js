@@ -34,6 +34,7 @@ const RecipientsPage = () => {
     }
 
         return (
+            <div className="page">
             <div id='recipients-page'>
                 <h1>Recipients</h1>
                 <section className="recipients-holder">
@@ -45,7 +46,9 @@ const RecipientsPage = () => {
                 </section>
                 { showAddRecipient && <AddRecipientDisplay hideRecipient={hideRecipient}/> }
                 <button onClick={displayAddRecipient}>add new recipient</button>
-            </div>    
+            </div>  
+            </div>
+  
         );
 }
 

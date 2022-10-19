@@ -58,10 +58,13 @@ const MainPage = () => {
   }, [recentlyDeleted, recipientDeleted, giftAdded]);
 
   return (
-    <div className="main-container">
+    <div className="page">
+        <div className="main-container">
       <h4>Gift Matches</h4>
       <div className="selections-list">{matchList}</div>
     </div>
+    </div>
+
   );
 };
 

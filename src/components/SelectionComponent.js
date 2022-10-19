@@ -103,7 +103,7 @@ const SelectionComponent = ({
           </Select>
         </FormControl>
       </Box>
-      <button onClick={handleDelete}>
+      <button className='deleteItemButton' onClick={handleDelete}>
         Delete Recipient
       </button>
     </div>

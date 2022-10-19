@@ -36,7 +36,7 @@ const GiftComponent = ({ giftId, giftName, url, notes, setDeleted, recipientId }
       </div>
       <p className="gift-name">{giftName}</p>
       <p className="gift-notes">{notes}</p>
-      <button className="deleteGift" onClick={handleDelete}>
+      <button className="deleteItemButton" onClick={handleDelete}>
         Delete Gift
       </button>
     </div>

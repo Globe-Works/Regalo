@@ -26,7 +26,7 @@ export const Gift = props => {
             <h2>{title}</h2>
             <p>Link: <a href={url}>{url}</a></p>
             <p>Notes: {notes}</p>
-            <button className="delete-gift-button" onClick={deleteGift}>Delete Gift</button>
+            <button className="deleteItemButton" onClick={deleteGift}>Delete Gift</button>
         </div>
     )
 }

@@ -27,7 +27,8 @@ const GiftsPage = () => {
     }
 
     return (
-        <div id='gift-page'>
+        <div className="page">
+             <div id='gift-page'>
             <h1>Gift Ideas</h1>
             <section className="gifts-holder">
                 {
@@ -38,7 +39,8 @@ const GiftsPage = () => {
             </section>
             <button onClick={displayAddGift}>add new gift</button>
             {showAddGift === true && <AddGiftDisplay hideGift={hideAddGift}/>}
-        </div>    
+        </div> 
+        </div>   
     );
 }
 

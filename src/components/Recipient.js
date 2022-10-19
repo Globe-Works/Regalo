@@ -24,6 +24,6 @@ export const Recipient = (props) => {
         <h2>{fullName}</h2>
         <p>Birthday: 'hi'</p>
         <p>Notes: {notes}</p>
-        <button class="delete-recipient-button" onClick={deleteRecipient}>Delete Recipient</button>
+        <button class="deleteItemButton" onClick={deleteRecipient}>Delete Recipient</button>
     </div>);
 }
