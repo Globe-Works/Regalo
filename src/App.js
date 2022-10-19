@@ -5,7 +5,7 @@ import {
   createRoutesFromElements,
   Route,
   RouterProvider,
-  Outlet,
+  Navigate,
 } from 'react-router-dom';
 import { myContext } from './Context';
 import LoginPage from './Pages/LoginPage';
@@ -23,21 +23,22 @@ import PairUpScreen from '../routes/PairUpScreen';
 import Recipients from '../routes/Recipients';
 import AddRecipient from '../routes/AddRecipient';
 
-let router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path="/" element={<Header />} errorElement={<ErrorPage />}>
-      <Route path="/" element={<Selection />} />
-      <Route path="/giftideas" element={<GiftIdeas />} />
-      <Route path="/newgift" element={<NewGift />} />
-      <Route path="/pairup" element={<PairUpScreen />} />
-      <Route path="/recipients" element={<Recipients />} />
-      <Route path="/newrecipient" element={<AddRecipient />} />
-    </Route>,
-  ),
-);
-
 const App = () => {
   const user = useContext(myContext);
+
+  let router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path="/" element={<Header />} errorElement={<ErrorPage />}>
+        <Route path="/" element={user ? <Selection /> : <Navigate to="/login" />} />
+        <Route path="/login" element={user ? <Navigate to="/" /> : <LoginPage />} />
+        <Route path="/giftideas" element={<GiftIdeas />} />
+        <Route path="/newgift" element={<NewGift />} />
+        <Route path="/pairup" element={<PairUpScreen />} />
+        <Route path="/recipients" element={<Recipients />} />
+        <Route path="/newrecipient" element={<AddRecipient />} />
+      </Route>,
+    ),
+  );
 
   return (
     <>

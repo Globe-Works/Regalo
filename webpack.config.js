@@ -8,6 +8,7 @@ const config = {
     historyApiFallback: true,
     proxy: {
       '/api': 'http://localhost:3000',
+      '/auth': 'http://localhost:3000',
     },
     static: {
       directory: path.resolve(__dirname, 'dist'),

@@ -4,7 +4,7 @@ import { Box } from '@mui/material';
 
 const LoginPage = (props) => {
   const googleAuth = () => {
-    window.open('/api/auth', '_self');
+    window.open('/auth/google', '_self');
   };
 
   return (

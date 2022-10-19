@@ -4,6 +4,7 @@ const path = require('path');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 require('./routes/passport');
+const cors = require('cors');
 
 const PORT = process.env.PORT || 3000;
 app.use(express.json());
@@ -12,6 +13,8 @@ app.use(express.json());
 if (process.env.NODE_ENV !== 'development') {
   app.use('/', express.static(path.resolve(__dirname, '../dist')));
 }
+
+app.use(cors());
 
 app.use(
   cookieSession({
@@ -23,26 +26,8 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get(
-  '/api/auth',
-  (req, res, next) => {
-    console.log('auth request received');
-    return next();
-  },
-  passport.authenticate('google', { scope: ['openid', 'email'] }),
-);
-
-app.get(
-  '/api/callback',
-  passport.authenticate('google'),
-  (req, res, next) => {
-    console.log('callback request received');
-    return next();
-  },
-  function (req, res) {
-    res.redirect('/');
-  },
-);
+const authRouter = require('./routes/auth');
+app.use('/auth', authRouter);
 
 // Gift CRUD Ops
 const giftRouter = require('./routes/giftRouter');

@@ -1,6 +1,6 @@
 const passport = require('passport');
-const GoogleStrategy = require('passport-google-oidc');
 const db = require('../models/db');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } = require('../../.env');
 
 passport.serializeUser(function (user, done) {
@@ -16,9 +16,9 @@ passport.use(
     {
       clientID: GOOGLE_CLIENT_ID,
       clientSecret: GOOGLE_CLIENT_SECRET,
-      callbackURL: 'http://localhost:8080/api/callback',
+      callbackURL: 'http://localhost:8080/auth/google/callback',
     },
-    function (issuer, profile, cb) {
+    function (access_token, refresh_token, profile, cb) {
       console.log({ profile });
       // db.query('SELECT * FROM users WHERE google_id = ?', [profile.id]).then((data) => {
       //   if (data.rows.length === 0) {
@@ -45,7 +45,7 @@ passport.use(
       //   }
       // });
       cb(null, {
-        id: '123124',
+        userId: '123124',
         name: 'Craig Boswell',
       });
     },

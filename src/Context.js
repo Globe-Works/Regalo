@@ -3,11 +3,10 @@ import React, { createContext, useEffect, useState } from 'react';
 export const myContext = createContext({});
 
 export default function Context(props) {
-  console.log('Context function os runing');
-  const [user, setUser] = useState('');
+  const [user, setUser] = useState();
 
   useEffect(() => {
-    fetch('/api/auth', {
+    fetch('/auth', {
       method: 'GET',
       credentials: 'include',
       headers: {
@@ -16,12 +15,10 @@ export default function Context(props) {
         'Access-Control-Allow-Credentials': true,
       },
     })
-      .then((res) => {
-        console.log({ res });
-        if (res) {
-          let response = res.json();
-          return response;
-        }
+      .then((response) => response.json())
+      .then((response) => {
+        console.log(response);
+        return response;
       })
       .then((response) => {
         setUser(response.userId);
