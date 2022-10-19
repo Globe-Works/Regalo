@@ -25,7 +25,7 @@ recipientController.getRecipients = (req, res, next) => {
         if (curr.title) {
           elToUpdate.gifts.push({
             giftName: curr.title,
-            giftId: curr.giftId,
+            giftId: curr.giftid,
             url: curr.url,
             img_url: curr.img_url,
             description: curr.description,
@@ -43,14 +43,48 @@ recipientController.postRecipient = (req, res, next) => {
   db.query(queryString, [
     user_id,
     full_name,
-    address || 'NULL',
-    city || 'NULL',
-    state || 'NULL',
-    country || 'NULL',
-    zip_code || 'NULL',
-    notes || 'NULL',
+    address || null,
+    city || null,
+    state || null,
+    country || null,
+    zip_code || null,
+    notes || null,
   ]).then((data) => {
     console.log(data);
+    return next();
+  });
+};
+recipientController.updateRecipient = async (req, res, next) => {
+  const { _id, user_id, full_name, address, city, state, country, zip_code, notes } = req.body;
+  const queryString = `UPDATE recipients
+                      SET user_id = $2, full_name = $3, address = $4, city = $5, state = $6, country = $7, zip_code = $8, notes = $9
+                      WHERE _id = $1;`;
+
+  db.query(queryString, [
+    _id,
+    user_id,
+    full_name,
+    address,
+    city,
+    state,
+    country,
+    zip_code,
+    notes,
+  ]).then((data) => {
+    console.log(data);
+    return next();
+  });
+};
+
+recipientController.deleteRecipient = (req, res, next) => {
+  //pgSQL doesn't allow multi line queries when using parameters so chained the queries
+  const queryString1 = `DELETE FROM gifts_for_recipients WHERE recipient_id = $1`;
+  const queryString2 = `DELETE FROM recipients WHERE _id = $1`;
+  db.query(queryString1, [req.params.id]).then((data) => {
+    db.query(queryString2, [req.params.id]).then((data) => {
+      console.log(data);
+      return next();
+    });
   });
 };
 /**
