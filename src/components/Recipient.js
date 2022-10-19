@@ -1,4 +1,4 @@
-export default Recipient = (props) => {
+export const Recipient = (props) => {
     //People that the user will be gifting to
     return(
     <div class="recipient">
@@ -8,4 +8,3 @@ export default Recipient = (props) => {
         <button class="delete-recipient-button">Delete</button>
     </div>);
 }
-

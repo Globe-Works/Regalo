@@ -11,21 +11,21 @@ import {
 //   GiftIdeas,
 //   SelectionsScreen
 // } from '../routes';
-import GiftIdeas from '../routes/GiftIdeas';
-import Selection from '../routes/Selection';
-import Header from '../routes/Header';
+import GiftsPage from './routes/GiftsPage';
+import MainPage from './routes/MainPage';
+import Header from './routes/Header';
 import ErrorPage from './error-page';
-import NewGift from '../routes/NewGift';
-import PairUpScreen from '../routes/PairUpScreen';
-import Recipients from '../routes/Recipients';
-import AddRecipient from '../routes/AddRecipient';
+import NewGift from './routes/NewGift';
+import PairUpScreen from './routes/PairUpScreen';
+import Recipients from './routes/Recipients';
+import AddRecipient from './routes/AddRecipient';
 
 
 let router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Header />} errorElement={<ErrorPage />}>
-      <Route path="/" element={<Selection />} />
-      <Route path="/giftideas" element={<GiftIdeas />} />
+      <Route path="/" element={<MainPage />} />
+      <Route path="/giftspage" element={<GiftsPage />} />
       <Route path="/newgift" element={<NewGift />} />
       <Route path="/pairup" element={<PairUpScreen />} />
       <Route path="/recipients" element={<Recipients />} />
