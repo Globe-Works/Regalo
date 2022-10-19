@@ -4,17 +4,20 @@ const MainPage = () => {
   const [matchList, setMatchList] = useState([]);
   const [recentlyDeleted, setDeleted] = useState({ giftId: 0 });
   const [recipientDeleted, setRecipientDeleted] = useState({ recipientId: 0 });
+  const [giftsList, setGiftList] = useState([]);
 
   const fetchMatches = async () => {
     try {
       const response = await fetch('/api/recipient');
       const matchData = await response.json();
-      console.log('Fetching Matches -->', matchData);
+
+      const allGifts = await fetch('/api/gift');
+      const giftsData = await allGifts.json();
+      console.log('Fetching Matches -->', matchData, giftsData);
       const tmpArr = [];
       matchData.forEach((recipient, i) => {
         // giftId, fullName, giftName, url, date, notes
         const { id, fullName, gifts, notes } = recipient;
-        console.log('RecipientId',id);
         tmpArr.push(
           <SelectionComponent
             recipientId={id}
@@ -24,7 +27,8 @@ const MainPage = () => {
             notes={notes}
             setDeleted={setDeleted}
             recentlyDeleted={recentlyDeleted}
-            setRecipientDeleted={setRecipientDeleted}
+                setRecipientDeleted={setRecipientDeleted}
+                giftsData = {giftsData}
           />,
         );
         setMatchList(tmpArr);
