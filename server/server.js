@@ -1,6 +1,11 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const cookieSession = require('cookie-session');
+const passport = require('passport');
+require('./routes/passport');
+const cors = require('cors');
+
 const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
@@ -8,6 +13,21 @@ app.use(express.json());
 if (process.env.NODE_ENV !== 'development') {
   app.use('/', express.static(path.resolve(__dirname, '../dist')));
 }
+
+app.use(cors());
+
+app.use(
+  cookieSession({
+    name: 'google-auth-session',
+    keys: ['key1', 'key2'],
+  }),
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+const authRouter = require('./routes/auth');
+app.use('/auth', authRouter);
 
 // Gift CRUD Ops
 const giftRouter = require('./routes/giftRouter');
@@ -34,6 +54,7 @@ app.use((err, req, res, next) => {
   };
   const errorObj = Object.assign({}, defaultErr, err);
   console.log(errorObj.log);
+  console.log(err);
   return res.status(errorObj.status).json(errorObj.message);
 });
 
