@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import SelectionComponent from '../../client/components/SelectionComponent'
+import SelectionComponent from '../components/SelectionComponent'
 const MainPage = () => {
 
     const [matchList, setMatchList] = useState([]);
@@ -42,7 +42,7 @@ const MainPage = () => {
 
     return (
         <div className="main-container">
-            <h1>Main Page</h1>
+            <h4>Gift Matches</h4>
             <div className="selections-list">{matchList}</div>
         </div>
     )

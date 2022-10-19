@@ -40,11 +40,9 @@ const SelectionComponent = ({recipientId, gifts, fullName, notes, setDeleted, re
     },[recentlyDeleted])
     return (
         <div className="selection-container">
-            <div className="selection-component">
+            <p className="person-name">{fullName}</p>
+            <div className="name-component">
                 <div className="item-component">{giftList}</div>
-                <div className="name-component">
-                    <p className="person-name">{fullName}</p>
-                </div>
             </div>
             <button className="deleteBtn" onClick={handleDelete}>
                 Delete Recipient
