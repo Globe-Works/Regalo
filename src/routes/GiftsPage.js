@@ -32,7 +32,7 @@ const GiftsPage = () => {
             <section className="gifts-holder">
                 {
                 giftsArr.map((gift) => {
-                return <Gift key={count++} name={gift.title} link={gift.url} notes={gift.notes} />
+                return <Gift key={count++} title={gift.title} url={gift.url} notes={gift.notes} giftID={gift.giftId} />
                 })
                 }
             </section>
