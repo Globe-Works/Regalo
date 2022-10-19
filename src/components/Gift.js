@@ -4,7 +4,7 @@ export const Gift = props => {
 
     const { title, url, notes , giftId} = props;
 
-    const deleteGift = () => {
+    const deleteGift = async () => {
         try {
             await fetch(`/api/gift/${giftId}`, {
                 method: 'DELETE',
@@ -12,10 +12,9 @@ export const Gift = props => {
                     'Content-Type': 'application/json',
                 },
             });
-            console.log(`Deleted ${giftName}`)
-            setDeleted({ giftId })
+            console.log(`Deleted ${title}`)
         } catch (err) {
-            console.log(`Error attempting to delete ${giftName}, Error: ${err}`)
+            console.log(`Error attempting to delete ${title}, Error: ${err}`)
         }
     }
     //Individual Gift Items

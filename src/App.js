@@ -17,7 +17,7 @@ import Header from './routes/Header';
 import ErrorPage from './error-page';
 import NewGift from './routes/NewGift';
 import PairUpScreen from './routes/PairUpScreen';
-import Recipients from './routes/Recipients';
+import RecipientsPage from './routes/RecipientsPage';
 import AddRecipient from './routes/AddRecipient';
 
 
@@ -28,7 +28,7 @@ let router = createBrowserRouter(
       <Route path="/giftspage" element={<GiftsPage />} />
       <Route path="/newgift" element={<NewGift />} />
       <Route path="/pairup" element={<PairUpScreen />} />
-      <Route path="/recipients" element={<Recipients />} />
+      <Route path="/recipients" element={<RecipientsPage />} />
       <Route path="/newrecipient" element={<AddRecipient />} />
     </Route>
   )
