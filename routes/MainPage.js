@@ -42,7 +42,7 @@ const MainPage = () => {
 
     return (
         <div className="main-container">
-            <h1>Main Page</h1>
+            <h4>Gift Matches</h4>
             <div className="selections-list">{matchList}</div>
         </div>
     )
