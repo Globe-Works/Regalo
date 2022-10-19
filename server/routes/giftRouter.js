@@ -3,7 +3,7 @@ const router = express.Router();
 const giftController = require('../controllers/giftController');
 
 //CREATE
-router.post('/', (req, res) => {
+router.post('/', giftController.createGift, (req, res) => {
   res.status(200).json({ message: 'We will add that gift' });
 });
 
@@ -13,12 +13,12 @@ router.get('/', giftController.getGifts, (req, res) => {
 });
 
 //UPDATE
-router.put('/', (req, res) => {
+router.put('/', giftController.updateGift, (req, res) => {
   res.status(200).json({ message: 'We will update that gift' });
 });
 
 //DELETE
-router.delete('/:id', (req, res) => {
+router.delete('/:id', giftController.deleteGift, (req, res) => {
   res.status(204).send();
 });
 

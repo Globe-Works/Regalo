@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const matchController = require('../controllers/matchController');
 
 //CREATE
-router.post('/', (req, res) => {
+router.post('/', matchController.createMatch, (req, res) => {
   res.status(200).json({ message: 'We will add that match' });
 });
 
@@ -12,7 +13,7 @@ router.get('/', (req, res) => {
 });
 
 //DELETE
-router.delete('/:id', (req, res) => {
+router.delete('/', matchController.deleteMatch, (req, res) => {
   res.status(204).send();
 });
 
