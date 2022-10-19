@@ -3,7 +3,8 @@ const GiftComponent = ({ giftId, giftName, url, notes, setDeleted, recipientId }
   const deleteGift = async () => {
     try {
       await fetch(`/api/match/`, {
-        method: 'DELETE',
+          method: 'DELETE',
+          credentials: 'include',
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
