@@ -23,7 +23,12 @@ export const AddRecipientDisplay = (props) => {
                 state: recipientState,
                 country: country
             }),
-            headers: { 'Content-Type': 'application/json' }
+            credentials: 'include',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Credentials': true,
+            }
         })
         .then(res => res.json())
         .then(data => hideRecipient) // should close the window

@@ -14,7 +14,15 @@ export const AddGiftDisplay = (props) => {
     const [alertMessage, setAlertMessage] = useState('')
 
     useEffect(() => {
-        fetch('/api/recipient')
+        fetch('/api/recipient', {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Credentials': true,
+            }
+        })
         .then(res => res.json())
         .then(data => setExistingRecipients(data))
     }, [])
