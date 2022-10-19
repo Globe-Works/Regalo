@@ -25,7 +25,7 @@ const App = () => {
   let router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Header />} errorElement={<ErrorPage />}>
-        <Route path="/" element={<MainPage />} />
+        <Route path="/" element={user ? <MainPage /> : <LoginPage />} />
         <Route path="/login" element={user ? <Navigate to="/" /> : <LoginPage />} />
         <Route path="/giftspage" element={<GiftsPage />} />
         <Route path="/newgift" element={<NewGift />} />

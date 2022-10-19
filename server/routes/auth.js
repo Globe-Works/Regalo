@@ -4,7 +4,7 @@ const router = express.Router();
 
 const CLIENT_URL = 'http://localhost:8080';
 
-router.get('/google', passport.authenticate('google', { scope: ['profile'] }));
+router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
 router.get(
   '/google/callback',
@@ -26,8 +26,15 @@ router.get('/failure', (req, res) => {
 });
 
 router.get('/logout', (req, res) => {
-  req.logout();
-  res.redirect(CLIENT_URL);
+  req.logOut();
+  req.session = null;
+
+  res
+    .status(200)
+    .clearCookie('google-auth-session', {
+      path: '/',
+    })
+    .redirect('/');
 });
 
 const isLoggedIn = (req, res, next) => {
@@ -38,7 +45,6 @@ const isLoggedIn = (req, res, next) => {
 };
 
 router.get('/', isLoggedIn, (req, res) => {
-  console.log('req.user: ' + req.user.userId);
   res.status(200).json(req.user);
 });
 

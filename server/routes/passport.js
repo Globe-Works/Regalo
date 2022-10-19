@@ -1,5 +1,5 @@
 const passport = require('passport');
-const db = require('../models/db');
+const { query } = require('../models/giftModel');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } = require('../../.env');
 
@@ -19,35 +19,30 @@ passport.use(
       callbackURL: 'http://localhost:8080/auth/google/callback',
     },
     function (access_token, refresh_token, profile, cb) {
-      console.log({ profile });
-      // db.query('SELECT * FROM users WHERE google_id = ?', [profile.id]).then((data) => {
-      //   if (data.rows.length === 0) {
-      //     // User Not Found
-      //     // Create a new user record and link it to the Google account.
-      //     let firstName = profile.displayName;
-      //     let lastName = null;
-      //     if (profile.displayName.search(' ') !== -1) {
-      //       [firstName, lastName] = profile.displayName.split(' ');
-      //     }
-      //     db.query(
-      //       'INSERT INTO users (first_name, last_name, email, google_id) VALUES ($1, $2, $3, $4) RETURNING _id',
-      //       [firstName, lastName, profile.email, profile.id],
-      //     )
-      //       .then((returnedRow) => {
-      //         console.log({ returnedRow });
-      //         return returnedRow;
-      //       })
-      //       .then((returnedRow) => ({
-      //         id: returnedRow._id,
-      //         name: profile.displayName,
-      //       }))
-      //       .then((user) => cb(null, user));
-      //   }
-      // });
-      cb(null, {
-        userId: '123124',
-        name: 'Craig Boswell',
-      });
+      query('SELECT * FROM users WHERE google_id = $1', [profile.id])
+        .then((data) => {
+          if (data.rows.length === 0) {
+            // USER NOT FOUND, CREATE NEW USER
+            query(
+              'INSERT INTO users (display_name, email, google_id) VALUES ($1, $2, $3) RETURNING _id',
+              [profile.displayName, profile.emails[0].value, profile.id],
+            ).then((response) => {
+              return {
+                userId: response.rows[0]._id,
+                displayName: profile.displayName,
+              };
+            });
+          } else {
+            //USER FOUND, RETURN USER
+            const { displayName } = data.rows[0];
+            const userId = data.rows[0]._id;
+            return {
+              userId,
+              displayName,
+            };
+          }
+        })
+        .then((user) => cb(null, user));
     },
   ),
 );
