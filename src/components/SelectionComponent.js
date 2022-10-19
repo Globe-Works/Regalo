@@ -61,6 +61,7 @@ const SelectionComponent = ({
           url={gift.url}
           notes={gift.notes}
           setDeleted={setDeleted}
+          recipientId={recipientId}
         />,
       );
     });
@@ -76,7 +77,7 @@ const SelectionComponent = ({
 
     const MenuItems = [];
     giftsData.forEach((gift) => {
-        MenuItems.push(<MenuItem value={gift}>{`${gift.title}` }</MenuItem>)
+        MenuItems.push(<MenuItem key={gift._id} value={gift}>{`${gift.title}` }</MenuItem>)
     });
     
   return (
@@ -91,7 +92,7 @@ const SelectionComponent = ({
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={giftsData}
+            value={''}
             label="PairGift"
             onChange={handlePair}
           >
