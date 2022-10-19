@@ -2,8 +2,8 @@ import React from 'react';
 
 export const DataItem = (props) => {
     return (
-        <div className="searchDataItem">
+        <button className="searchDataItem">
             {props.text}
-        </div>
+        </button>
     )
 }
