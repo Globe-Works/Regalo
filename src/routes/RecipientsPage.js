@@ -35,20 +35,19 @@ const RecipientsPage = () => {
 
         return (
             <div className="page">
-            <div id='recipients-page'>
-                <h1>Recipients</h1>
-                <section className="recipients-holder">
-                    {
-                    recipientsArr.map((recipient) => {
-                    return <Recipient key={count++} fullName={recipient.fullName} birthday={recipient.birthday} notes={recipient.notes} recipientId={recipient._id} />
-                    })
-                    }
-                </section>
-                { showAddRecipient && <AddRecipientDisplay hideRecipient={hideRecipient}/> }
-                <button onClick={displayAddRecipient}>add new recipient</button>
-            </div>  
+                <div id='pageHeader'>
+                    <h1>Recipients</h1>
+                    <button className="addItemButton" onClick={displayAddRecipient}>add new recipient</button>
+                </div>
+                    <section className="selections-list">
+                        {
+                        recipientsArr.map((recipient) => {
+                        return <Recipient key={count++} fullName={recipient.fullName} address={recipient.address} city={recipient.city} state={recipient.state} zip={recipient.zip} country={recipient.country} notes={recipient.notes} recipientId={recipient._id} />
+                        })
+                        }
+                    </section>
+                    { showAddRecipient && <AddRecipientDisplay hideRecipient={hideRecipient}/> }
             </div>
-  
         );
 }
 

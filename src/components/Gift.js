@@ -22,7 +22,7 @@ export const Gift = props => {
     }
     //Individual Gift Items
     return(
-        <div className="gift">
+        <div className="selection-container">
             <h2>{title}</h2>
             <p>Link: <a href={url}>{url}</a></p>
             <p>Notes: {notes}</p>

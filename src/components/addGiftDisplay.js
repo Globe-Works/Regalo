@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { DataItem } from './DataItem';
-
 export const AddGiftDisplay = (props) => {
-
     const { hideGift } = props;
-
     const [giftName, setGiftName] = useState('');
     const [url, setUrl] = useState(null);
     const [recipientId, setRecipientId] = useState([]);
@@ -12,7 +9,6 @@ export const AddGiftDisplay = (props) => {
     const [existingRecipients, setExistingRecipients] = useState([]);
     const [filteredData, setFilteredData] = useState([]); // array of objects
     const [alertMessage, setAlertMessage] = useState('')
-
     useEffect(() => {
         fetch('/api/recipient', {
             method: 'GET',
@@ -26,7 +22,6 @@ export const AddGiftDisplay = (props) => {
         .then(res => res.json())
         .then(data => setExistingRecipients(data))
     }, [])
-
     const handleAddGift = () => {
         if (recipientInput && !recipientId) {
             setAlertMessage('recipient not found')
@@ -37,7 +32,6 @@ export const AddGiftDisplay = (props) => {
             title: giftName,
             url: url,
             recipientId: recipientId,
-            user_id: 1 // TEMPORARY DUMMY DATA
           }),
           headers: { 'Content-Type': 'application/json' }
         })
@@ -47,7 +41,6 @@ export const AddGiftDisplay = (props) => {
             console.log('Error occurred while trying to add a gift: ', err);
         })
     }
-
     const handleFilter = (event) => {
         const entry = event.target.value;
         setRecipientInput(entry);
@@ -60,35 +53,31 @@ export const AddGiftDisplay = (props) => {
             if (recipient.fullName === entry) setRecipientId(recipient._id);
         })
     }
-
     const replaceInput = (event) => {
         setRecipientId(event.target.id);
     }
-
     const modalOverlay = {
         position: 'fixed',
         top: 0,
         left: 0,
         right: 0,
         bottom: 0,
-        backgroundColor: 'rgba(0, 0, 0, 0.9)',
+        backgroundColor: 'rgba(0, 0, 0, 0.2)',
         zIndex: 1000
     }
-
     return (
         <div style={modalOverlay}>
-            <div className='addGift'>
-            <button onClick={hideGift}> X </button>
-            <form>
-                <label>gift:
+            <div className='addItem'>
+            <div className="newItemForm">
+                <div className="topRow">
+                    <p>gift:</p>
+                    <button className="hideModal" onClick={hideGift}> X </button>
+                </div>
                     <input type="text" onChange={(e) => setGiftName(e.target.value)}/>
-                </label>
-                <label>link to gift (optional):
+                <p>link to gift (optional):</p>
                     <input type="text" onChange={(e) => setUrl(e.target.value)}/>
-                </label>
-                <label>recipient (optional):
-                    <input type="text" onChange={handleFilter}/>
-                </label>
+                <p>recipient (optional):</p>
+                <input type="text" onChange={handleFilter}/>
                 {filteredData.length!== 0 && (
                     <div className="dataResult">
                     {filteredData.map((item) => {
@@ -98,9 +87,33 @@ export const AddGiftDisplay = (props) => {
                     })}
                 </div>)}
                 <div className="alertMessage">{alertMessage}</div>
-                <button onClick={handleAddGift}>add gift</button>
-            </form>
+                <button className="addItemButton" onClick={handleAddGift}>add gift</button>
+            </div>
         </div>
         </div>
     )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

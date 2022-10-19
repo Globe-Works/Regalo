@@ -28,19 +28,19 @@ const GiftsPage = () => {
 
     return (
         <div className="page">
-             <div id='gift-page'>
-            <h1>Gift Ideas</h1>
-            <section className="gifts-holder">
-                {
-                giftsArr.map((gift) => {
-                return <Gift key={count++} title={gift.title} url={gift.url} notes={gift.notes} giftID={gift.giftId} />
-                })
-                }
-            </section>
-            <button onClick={displayAddGift}>add new gift</button>
-            {showAddGift === true && <AddGiftDisplay hideGift={hideAddGift}/>}
-        </div> 
-        </div>   
+            <div id='pageHeader'>
+                <h1>Gift Ideas</h1>
+                <button className="addItemButton" onClick={displayAddGift}>add new gift</button>
+            </div>
+                <section className="selections-list">
+                    {
+                    giftsArr.map((gift) => {
+                    return <Gift key={count++} title={gift.title} url={gift.url} notes={gift.notes} giftID={gift.giftId} />
+                    })
+                    }
+                </section>
+                {showAddGift === true && <AddGiftDisplay hideGift={hideAddGift}/>}
+        </div>
     );
 }
 

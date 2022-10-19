@@ -2,7 +2,7 @@ import React from "react";
 
 export const Recipient = (props) => {
     //People that the user will be gifting to
-    const { fullName, birthday, notes, recipientId } = props;
+    const { fullName, address, city, state, zip, country, notes, recipientId } = props;
     const deleteRecipient = async () =>{
         try {
             await fetch(`/api/recipient/${recipientId}`, {
@@ -20,10 +20,11 @@ export const Recipient = (props) => {
             }
     }
     return(
-    <div class="recipient">
-        <h2>{fullName}</h2>
-        <p>Birthday: 'hi'</p>
-        <p>Notes: {notes}</p>
-        <button class="deleteItemButton" onClick={deleteRecipient}>Delete Recipient</button>
-    </div>);
+        <div className="selection-container">
+            <h2>{fullName}</h2>
+            <p>Address: {address && `${address}, ${city}, ${state} ${zip}, ${country}`}</p>
+            <p>Notes: {notes}</p>
+            <button class="deleteItemButton" onClick={deleteRecipient}>Delete Recipient</button>
+        </div>
+    );
 }
